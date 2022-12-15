@@ -1,8 +1,10 @@
 package cn.doitedu.flink.java.demos;
 
+import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.typeutils.TypeSerializer;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -10,11 +12,14 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.AllWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.*;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.triggers.Trigger;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+import org.apache.flink.streaming.api.windowing.windows.Window;
 import org.apache.flink.util.Collector;
 
 import java.time.Duration;
+import java.util.Collection;
 
 public class _21_Window_Api_Demo2 {
 
@@ -42,7 +47,6 @@ public class _21_Window_Api_Demo2 {
         /**
          * 一、各种全局窗口开窗api
          */
-
         // 全局 计数滚动窗口
         beanStream.countWindowAll(10)  // 10条数据一个窗口
                 .apply(new AllWindowFunction<EventBean2, String, GlobalWindow>() {

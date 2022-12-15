@@ -30,7 +30,8 @@ public class Demo7_ColumnDetail2_TableApi {
                                 .columnByExpression("guid","id")  // 声明表达式字段
                                 /*.columnByExpression("big_age",$("age").plus(10))*/     // 声明表达式字段
                                 .columnByExpression("big_age","age + 10")  // 声明表达式字段
-                                // isVirtual 是表示： 当这个表被sink表时，该字段是否出现在schema中
+                                // isVirtual 是表示： 当这个表被sink表时，该字段是否出现在schema中，true时不显示
+                                // （做sink表时由于这些元数据字段会自动生成，一般设置为true，不往sink表中写）
                                 .columnByMetadata("offs",DataTypes.BIGINT(),"offset",true)  // 声明元数据字段
                                 .columnByMetadata("ts",DataTypes.TIMESTAMP_LTZ(3),"timestamp",true)  // 声明元数据字段
                                 /*.primaryKey("id","name")*/

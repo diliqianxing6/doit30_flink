@@ -57,6 +57,5 @@ public class Demo1_TableSql {
 
         tableEnv.executeSql("select gender,avg(age) as avg_age  from  t_kafka group by gender").print();
 
-
     }
 }

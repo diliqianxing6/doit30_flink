@@ -235,7 +235,6 @@ public class _20_Window_Api_Demo1 {
                     public void process(String key, ProcessWindowFunction<EventBean2, Tuple3<String,String,Double>, String, TimeWindow>.Context context, Iterable<EventBean2> elements, Collector<Tuple3<String,String,Double>> out) throws Exception {
                         // 构造一个hashmap来记录每一个事件的发生总次数，和行为总时长
                         HashMap<String, Tuple2<Integer, Long>> tmpMap = new HashMap<>();
-
                         // 遍历窗口中的每一条数据
                         for (EventBean2 element : elements) {
                             String eventId = element.getEventId();
