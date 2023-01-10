@@ -29,6 +29,7 @@ public class ConsumerDemo2 {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
 /*
+        这是方式比较low不用
         // subscribe订阅 会参与消费组的自动再均衡机制才能真正获得自己要消费的topic及其分区的
         consumer.subscribe(Collections.singletonList("ddd"));
         // 这里无意义地去拉一次数据，主要就是为了确保 分区分配动作已完成
